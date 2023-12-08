@@ -1,5 +1,4 @@
 import {createRouter, createWebHashHistory} from 'vue-router'
-import {useStore} from "vuex";
 
 
 import usersListView from '../views/users/usersListView.vue'
@@ -39,21 +38,6 @@ const routes = [
 const router = createRouter({
     "history": createWebHashHistory(),
     routes
-})
-
-
-router.beforeEach(async (to) => {
-    const store = useStore();
-    const isAuth = store.getters["auth/isAuthenticated"];
-    if (to.name !== 'authorization' && !isAuth)
-        return {
-            name: 'authorization'
-        }
-
-
-    return true
-
-
 })
 
 router.afterEach((to) => {
